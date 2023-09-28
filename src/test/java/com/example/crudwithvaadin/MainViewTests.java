@@ -44,7 +44,7 @@ public class MainViewTests {
 	}
 
 	private List<Customer> getCustomersInGrid() {
-		ListDataProvider<Customer> ldp = (ListDataProvider) mainView.grid.getDataProvider();
+		ListDataProvider ldp = (ListDataProvider) mainView.grid.getDataProvider();
 		return new ArrayList<>(ldp.getItems());
 	}
 

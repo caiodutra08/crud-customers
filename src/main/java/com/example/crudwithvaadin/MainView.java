@@ -1,11 +1,16 @@
 package com.example.crudwithvaadin;
 
+import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.Route;
 import org.springframework.util.StringUtils;
@@ -15,23 +20,46 @@ public class MainView extends VerticalLayout {
 
 	private final CustomerRepository repo;
 
-	private final CustomerEditor editor;
-
 	final Grid<Customer> grid;
 
 	final TextField filter;
 
-	private final Button addNewBtn;
-
 	public MainView(CustomerRepository repo, CustomerEditor editor) {
 		this.repo = repo;
-		this.editor = editor;
 		this.grid = new Grid<>(Customer.class);
 		this.filter = new TextField();
-		this.addNewBtn = new Button("New customer", VaadinIcon.PLUS.create());
 
 		// build layout
-		HorizontalLayout actions = new HorizontalLayout(filter, addNewBtn);
+		Button addNewBtn = new Button("New customer", VaadinIcon.PLUS.create());
+		createHeader(addNewBtn);
+		HorizontalLayout actions = new HorizontalLayout();
+		Dialog dialog = new Dialog();
+		dialog.setHeaderTitle("New Customer");
+		addNewBtn.addClickListener(click -> {
+			dialog.add(editor);
+			dialog.open();
+			editor.editCustomer(new Customer());
+		});
+		Button closeButton = new Button("Delete", VaadinIcon.TRASH.create(),
+			(e) -> {
+			editor.delete();
+			dialog.close();
+		});
+		closeButton.getElement().setAttribute("theme", "error");
+		dialog.setCloseOnEsc(true);
+		dialog.setCloseOnOutsideClick(true);
+		Button saveButton = new Button("Save", e -> {
+			editor.save();
+			dialog.close();
+		});
+		saveButton.getElement().setAttribute("theme", "primary");
+		saveButton.addClickShortcut(Key.ENTER);
+		HorizontalLayout editorActions = new HorizontalLayout();
+		editorActions.add(saveButton, closeButton);
+		editorActions.setSpacing(true);
+		editorActions.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
+		editor.add(editorActions);
+
 		add(actions, grid, editor);
 
 		grid.setHeight("300px");
@@ -48,11 +76,10 @@ public class MainView extends VerticalLayout {
 
 		// Connect selected Customer to editor or hide if none is selected
 		grid.asSingleSelect().addValueChangeListener(e -> {
+			dialog.add(editor);
+			dialog.open();
 			editor.editCustomer(e.getValue());
 		});
-
-		// Instantiate and edit new Customer the new button is clicked
-		addNewBtn.addClickListener(e -> editor.editCustomer(new Customer("", "")));
 
 		// Listen changes made by the editor, refresh data from backend
 		editor.setChangeHandler(() -> {
@@ -64,7 +91,21 @@ public class MainView extends VerticalLayout {
 		listCustomers(null);
 	}
 
-	// tag::listCustomers[]
+	private void createHeader(Button addNewBtn) {
+		H1 h1 = new H1("Customers CRUD");
+		HorizontalLayout header = new HorizontalLayout();
+		header.addClassName("viewheader");
+		header.setWidth("100%");
+		header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
+		header.setPadding(true);
+		header.setSpacing(true);
+		header.setMargin(false);
+		header.add(h1);
+		header.add(filter);
+		header.add(addNewBtn);
+		add(header);
+	}
+
 	void listCustomers(String filterText) {
 		if (StringUtils.hasText(filterText)) {
 			grid.setItems(repo.findByLastNameStartsWithIgnoreCase(filterText));
@@ -72,6 +113,4 @@ public class MainView extends VerticalLayout {
 			grid.setItems(repo.findAll());
 		}
 	}
-	// end::listCustomers[]
-
 }
