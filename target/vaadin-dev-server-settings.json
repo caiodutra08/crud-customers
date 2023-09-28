@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "C:/Users/Goalfy/Documents/GitHub/gs-crud-with-vaadin-main/complete/./frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "C:/Users/Goalfy/Documents/GitHub/gs-crud-with-vaadin-main/complete/./frontend/generated/jar-resources",
+  "staticOutput": "C:/Users/Goalfy/Documents/GitHub/gs-crud-with-vaadin-main/complete/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "C:\\Users\\Goalfy\\Documents\\GitHub\\gs-crud-with-vaadin-main\\complete\\target\\classes\\META-INF\\VAADIN\\config",
+  "frontendBundleOutput": "C:\\Users\\Goalfy\\Documents\\GitHub\\gs-crud-with-vaadin-main\\complete\\target\\classes\\META-INF\\VAADIN\\webapp",
+  "devBundleOutput": "C:/Users/Goalfy/Documents/GitHub/gs-crud-with-vaadin-main/complete/src/main/dev-bundle/webapp",
+  "devBundleStatsOutput": "C:/Users/Goalfy/Documents/GitHub/gs-crud-with-vaadin-main/complete/src/main/dev-bundle/config",
+  "jarResourcesFolder": "C:/Users/Goalfy/Documents/GitHub/gs-crud-with-vaadin-main/complete/./frontend/generated/jar-resources",
+  "themeName": "",
+  "clientServiceWorkerSource": "C:\\Users\\Goalfy\\Documents\\GitHub\\gs-crud-with-vaadin-main\\complete\\target\\sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}
