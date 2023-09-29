@@ -30,17 +30,17 @@ public class MainView extends VerticalLayout {
 		this.filter = new TextField();
 
 		// build layout
-		Button addNewBtn = new Button("New customer", VaadinIcon.PLUS.create());
+		Button addNewBtn = new Button("Novo cliente", VaadinIcon.PLUS.create());
 		createHeader(addNewBtn);
 		HorizontalLayout actions = new HorizontalLayout();
 		Dialog dialog = new Dialog();
-		dialog.setHeaderTitle("New Customer");
+		dialog.setHeaderTitle("Novo cliente");
 		addNewBtn.addClickListener(click -> {
 			dialog.add(editor);
 			dialog.open();
 			editor.editCustomer(new Customer());
 		});
-		Button closeButton = new Button("Delete", VaadinIcon.TRASH.create(),
+		Button closeButton = new Button("Deletar", VaadinIcon.TRASH.create(),
 			(e) -> {
 			editor.delete();
 			dialog.close();
@@ -48,7 +48,7 @@ public class MainView extends VerticalLayout {
 		closeButton.getElement().setAttribute("theme", "error");
 		dialog.setCloseOnEsc(true);
 		dialog.setCloseOnOutsideClick(true);
-		Button saveButton = new Button("Save", e -> {
+		Button saveButton = new Button("Salvar", e -> {
 			editor.save();
 			dialog.close();
 		});
@@ -66,28 +66,22 @@ public class MainView extends VerticalLayout {
 		grid.setColumns("id", "firstName", "lastName");
 		grid.getColumnByKey("id").setWidth("50px").setFlexGrow(0);
 
-		filter.setPlaceholder("Filter by last name");
+		filter.setPlaceholder("Filtrar pelo sobrenome");
 
-		// Hook logic to components
-
-		// Replace listing with filtered content when user changes filter
 		filter.setValueChangeMode(ValueChangeMode.LAZY);
 		filter.addValueChangeListener(e -> listCustomers(e.getValue()));
 
-		// Connect selected Customer to editor or hide if none is selected
 		grid.asSingleSelect().addValueChangeListener(e -> {
 			dialog.add(editor);
 			dialog.open();
 			editor.editCustomer(e.getValue());
 		});
 
-		// Listen changes made by the editor, refresh data from backend
 		editor.setChangeHandler(() -> {
 			editor.setVisible(false);
 			listCustomers(filter.getValue());
 		});
 
-		// Initialize listing
 		listCustomers(null);
 	}
 

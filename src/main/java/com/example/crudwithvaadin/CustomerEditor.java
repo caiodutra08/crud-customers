@@ -13,12 +13,8 @@ public class CustomerEditor extends VerticalLayout implements KeyNotifier {
 
 	private final CustomerRepository repository;
 
-	/**
-	 * The currently edited customer
-	 */
 	private Customer customer;
 
-	/* Fields to edit properties in Customer entity */
 	TextField firstName = new TextField("First name");
 
 	TextField lastName = new TextField("Last name");
@@ -33,10 +29,8 @@ public class CustomerEditor extends VerticalLayout implements KeyNotifier {
 
 		add(firstName, lastName);
 
-		// bind using naming convention
 		binder.bindInstanceFields(this);
 
-		// Configure and style components
 		setSpacing(true);
 		setVisible(false);
 	}
@@ -62,29 +56,19 @@ public class CustomerEditor extends VerticalLayout implements KeyNotifier {
 		}
 		final boolean persisted = c.getId() != null;
 		if (persisted) {
-			// Find fresh entity for editing
-			// In a more complex app, you might want to load
-			// the entity/DTO with lazy loaded relations for editing
 			customer = repository.findById(c.getId()).get();
 		}
 		else {
 			customer = c;
 		}
-
-		// Bind customer properties to similarly named fields
-		// Could also use annotation or "manual binding" or programmatically
-		// moving values from fields to entities before saving
 		binder.setBean(customer);
 
 		setVisible(true);
 
-		// Focus first name initially
 		firstName.focus();
 	}
 
 	public void setChangeHandler(ChangeHandler h) {
-		// ChangeHandler is notified when either save or delete
-		// is clicked
 		changeHandler = h;
 	}
 }
