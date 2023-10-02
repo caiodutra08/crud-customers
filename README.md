@@ -8,8 +8,15 @@ O CRUD foi a solução para esse problema, pois assim conseguimos usar grande pa
 
 ## Funcionamento do CRUD
 
-### - Primeira vez que for usar (caminho feliz):
+### Primeira vez que for usar (caminho feliz):
 
+## Cadastro:
 - Criar um cadastro:
-    ![img.png](img.png)
-    
+    ![img_1.png](img_1.png)
+- Colocar o nome do cliente e salvar
+
+    ![img_2.png](img_2.png)
+
+- Será carregada a tela de visualização com o novo cadastro:
+    ![img_3.png](img_3.png)
+
