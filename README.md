@@ -25,8 +25,8 @@ O CRUD foi a solução para esse problema, pois assim conseguimos usar grande pa
   ![img_5.png](img_5.png)
   Nesse caso o estagiário cadastrou o cliente Pedro com o sobrenome errado
 
-
 - Para Alterar é só clicar no nome do Pedro na lista e salvar:
+
     ![img_6.png](img_6.png)
 
 - Será carregada a tela de visualização com o cadastro alterado:
