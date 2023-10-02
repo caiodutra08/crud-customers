@@ -20,3 +20,14 @@ O CRUD foi a solução para esse problema, pois assim conseguimos usar grande pa
 - Será carregada a tela de visualização com o novo cadastro:
     ![img_3.png](img_3.png)
 
+## Alterar:
+- Achar o cliente desejado (nesse caso Pedro):
+  ![img_5.png](img_5.png)
+  Nesse caso o estagiário cadastrou o cliente Pedro com o sobrenome errado
+
+
+- Para Alterar é só clicar no nome do Pedro na lista e salvar:
+    ![img_6.png](img_6.png)
+
+- Será carregada a tela de visualização com o cadastro alterado:
+    ![img_7.png](img_7.png)
