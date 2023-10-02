@@ -42,3 +42,6 @@ O CRUD foi a solução para esse problema, pois assim conseguimos usar grande pa
 - Será carregada a tela de visualização sem o cliente deletado:
     
     ![img_10.png](img_10.png)
+
+## Tecnologias Utilizadas:
+  <img aling="center" src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">
