@@ -31,3 +31,14 @@ O CRUD foi a solução para esse problema, pois assim conseguimos usar grande pa
 
 - Será carregada a tela de visualização com o cadastro alterado:
     ![img_7.png](img_7.png)
+
+## Excluir:
+- Achar o cliente desejado (nesse caso Adriano):
+    ![img_8.png](img_8.png)
+- Para Excluir é só clicar no nome do Adriano na lista e selecionar o botão de <font color="red"> DELETAR </font>
+    
+    ![img_9.png](img_9.png)
+
+- Será carregada a tela de visualização sem o cliente deletado:
+    
+    ![img_10.png](img_10.png)
